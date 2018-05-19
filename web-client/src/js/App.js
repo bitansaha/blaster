@@ -9,7 +9,7 @@ class App extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Blaster</a>
+            <a href="#">Blaster!</a>
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>
