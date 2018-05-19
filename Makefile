@@ -10,7 +10,7 @@ get-revel:
 blaster-web-client-dev-build:
 																cd ./web-client; rm -rf build; npm run build
 blaster-web-client-build:
-													cd ./web-client; npm install --save react react-dom; npm install --save react-bootstrap;
+													cd ./web-client; npm install --save react-scripts; npm install --save react react-dom; npm install --save react-bootstrap;
 													$(MAKE) blaster-web-client-dev-build
 
 copy-web-client-artifacts:
