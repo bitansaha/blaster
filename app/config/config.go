@@ -27,15 +27,13 @@ func init() {
 
 func loadConfig(config *BlasterConfig) {
 	configFilePath := getConfigFilePath()
-	configFile, err := ioutil.ReadFile(configFilePath)
-	if err != nil {
+
+	if configFile, err := ioutil.ReadFile(configFilePath); err == nil {
+		if err = yaml.Unmarshal(configFile, config); err != nil {
+			panic("Failed to unmarshal Blaster config - " + configFilePath)
+		}
+	} else {
 		panic("Failed to read Blaster config - " + configFilePath)
-	}
-
-	err = yaml.Unmarshal(configFile, config)
-
-	if err != nil {
-		panic("Failed to unmarshal Blaster config - " + configFilePath)
 	}
 }
 
@@ -51,4 +49,12 @@ func getConfigFilePath() string {
 	}
 	dataPathConstructor.WriteString(ddn)
 	return dataPathConstructor.String()
+}
+
+func GetBlasterConfiguration() BlasterConfig {
+	copy := func(c BlasterConfig) BlasterConfig {
+		return c
+	}
+
+	return copy(config)
 }
