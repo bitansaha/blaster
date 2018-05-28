@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Navbar, Col, Row } from 'react-bootstrap';
+import {Navbar, Col, Row } from 'react-bootstrap';
 
 class BasicHeader extends Component {
 

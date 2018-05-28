@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col, div, ListGroup, ListGroupItem} from 'react-bootstrap';
-import GridHeader from '../gridHeader/GridHeader'
+import { Row, Col, div} from 'react-bootstrap';
+import GridHeader from '../../gridHeader/GridHeader'
 
-class LowerPanel extends Component {
+class ResultPanel extends Component {
 
   render() {
     return (
@@ -17,4 +17,4 @@ class LowerPanel extends Component {
   }
 }
 
-export default LowerPanel;
+export default ResultPanel;

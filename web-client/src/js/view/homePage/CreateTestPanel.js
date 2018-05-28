@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { Row, Col, div, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
-import GridHeader from '../gridHeader/GridHeader'
+import ReactDOM from 'react-dom';
+import { Row, Col, div, Button} from 'react-bootstrap';
+import GridHeader from '../../gridHeader/GridHeader'
+import TestDefinition from '../testDefinition/TestDefinition'
 
-class UpperPanel extends Component {
+class CreateTestPanel extends Component {
+
+  createTest() {
+    ReactDOM.render(<TestDefinition />, document.getElementById('root'));
+  }
 
   render() {
     return (
@@ -16,7 +22,7 @@ class UpperPanel extends Component {
               <Col md={3}></Col>
               <Col md={6}>
                 <div>
-                  <Button onclick="createTest()" bsStyle="primary" bsSize="large" block>
+                  <Button onClick={this.createTest} bsStyle="primary" bsSize="large" block>
                     Create Test
                   </Button>
                 </div>
@@ -31,4 +37,4 @@ class UpperPanel extends Component {
   }
 }
 
-export default UpperPanel;
+export default CreateTestPanel;

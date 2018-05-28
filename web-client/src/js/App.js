@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Grid, div} from 'react-bootstrap';
-import HomePage from './view/HomePage'
+import {div} from 'react-bootstrap';
+import HomePage from './view/homePage/HomePage'
 import BasicFooter from './common/commonFooter/BasicFooter'
 import BasicHeader from './common/commonHeader/BasicHeader'
 

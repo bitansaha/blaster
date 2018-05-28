@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Navbar } from 'react-bootstrap';
+import {Navbar } from 'react-bootstrap';
 
 class GridHeader extends Component {
 
