@@ -17,6 +17,8 @@ GET     /favicon.ico                            404
 
 GET     /tests                      BlasterController.GetTests
 
+GET     /tests/:testName                      BlasterController.GetTest
+
 # Map static resources from the /app/static folder to the /static path
 GET     /static/*filepath                       Static.Serve("static")
 
