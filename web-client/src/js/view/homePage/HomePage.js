@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, div} from 'react-bootstrap';
 import TestListPanel from './TestListPanel'
 import CreateTestPanel from './CreateTestPanel'
-import ResultPanel from './ResultPanel'
+import DeploymentConfiguration from './DeploymentConfiguration'
 
 class HomePage extends Component {
 
@@ -17,7 +17,7 @@ class HomePage extends Component {
 
           <Col md={7}>
             <CreateTestPanel />
-            <ResultPanel />
+            <DeploymentConfiguration />
           </Col>
           <Col md={1}></Col>
         </Row>

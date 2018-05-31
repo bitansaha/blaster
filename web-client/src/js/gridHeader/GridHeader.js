@@ -7,7 +7,7 @@ class GridHeader extends Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <p>Grid Header</p>
+          <h4>{this.props.headerName}</h4>
         </Navbar.Header>
       </Navbar>
     );

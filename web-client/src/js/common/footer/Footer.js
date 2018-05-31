@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {Navbar} from 'react-bootstrap';
 
-class BasicFooter extends Component {
+class Footer extends Component {
 
   render() {
     return (
       <Navbar fluid style={{ paddingLeft: 15}} className="navbar-fixed-bottom" >
-        Footer
       </Navbar>
     );
   }
 }
 
-export default BasicFooter;
+export default Footer;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Navbar, Col, Row } from 'react-bootstrap';
 
-class BasicHeader extends Component {
+class Header extends Component {
 
   render() {
     return (
@@ -22,4 +22,4 @@ class BasicHeader extends Component {
   }
 }
 
-export default BasicHeader;
+export default Header;
