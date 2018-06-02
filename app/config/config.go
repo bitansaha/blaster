@@ -52,9 +52,5 @@ func getConfigFilePath() string {
 }
 
 func GetBlasterConfiguration() BlasterConfig {
-	copy := func(c BlasterConfig) BlasterConfig {
-		return c
-	}
-
-	return copy(config)
+	return config
 }

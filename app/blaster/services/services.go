@@ -62,21 +62,21 @@ func GetTestNames() ([]string, error) {
 	}
 }
 
-func GetTestByName(testName string) (TestJSON, error) {
+func GetTestByName(testName string) (*TestJSON, error) {
 	var testJSON TestJSON
 	filePath := filepath.Join(config.GetBlasterConfiguration().DataLocation, testName, fileName)
 	file, err := os.Open(filePath)
 
 	if err != nil {
 		deleteTest(testName)
-		return testJSON, networkerrors.NewNetworkError("Data file not found", &networkerrors.Error404{})
+		return &testJSON, networkerrors.NewNetworkError("Data file not found", &networkerrors.Error404{})
 	}
 
 	if err = json.NewDecoder(file).Decode(&testJSON); err != nil {
-		return testJSON, networkerrors.NewNetworkError("Failed to read data", &networkerrors.Error500{})
+		return &testJSON, networkerrors.NewNetworkError("Failed to read data", &networkerrors.Error500{})
 	}
 
-	return testJSON, nil
+	return &testJSON, nil
 }
 
 func deleteTest(testName string) {
