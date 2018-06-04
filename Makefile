@@ -4,8 +4,10 @@ blaster-build-msg:
 										########################################### Blaster Build ############################################
 										######################################################################################################
 										######################################################################################################
-get-revel:
+go-dependencies:
 						go get github.com/revel/cmd/revel
+						go get gopkg.in/yaml.v2
+
 
 blaster-web-client-dev-build:
 																cd ./web-client; rm -rf build; npm run build
@@ -21,7 +23,7 @@ copy-web-client-artifacts:
 
 build-blaster:
 								$(MAKE) blaster-build-msg
-								$(MAKE) get-revel
+								$(MAKE) go-dependencies
 								$(MAKE) blaster-web-client-build
 								$(MAKE) copy-web-client-artifacts
 

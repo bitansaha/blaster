@@ -17,6 +17,8 @@ test-results/
 tmp/
 routes/
 
+data/
+
 *.DS_Store
 npm-debug.log
 static/
