@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Col, div} from 'react-bootstrap';
-import GridHeader from '../../gridHeader/GridHeader'
-import CustomButton from '../../common/button/CustomButton'
+import GridHeader from '../../gridHeader/GridHeader';
+import CustomButton from '../../common/button/CustomButton';
 
 class CreateTestPanel extends Component {
-
+  
   render() {
     return (
       <div className='panel panel-default'>

@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import { Row, Col, div, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { Row, Col, div, ListGroup, ListGroupItem, li} from 'react-bootstrap';
 import GridHeader from '../../gridHeader/GridHeader'
 
 class TestListPanel extends Component {
+
+  constructor(props){
+    super(props);
+    this.getList = this.getList.bind(this);
+  }
+
+  getList(list) {
+    const listItems = list.map((name) =>
+      <ListGroupItem>{name}</ListGroupItem>
+    );
+    return (
+      <ListGroup fluid style={{ paddingLeft: 15,  paddingRight: 15}}>{listItems}</ListGroup>
+    );
+  }
 
   render() {
     return (
@@ -10,10 +24,7 @@ class TestListPanel extends Component {
         <Row>
           <Col md={12}>
             <GridHeader headerName='Test List'/>
-            <ListGroup fluid style={{ paddingLeft: 15,  paddingRight: 15}}>
-              <ListGroupItem><a href="#test1">Test 1</a></ListGroupItem>
-              <ListGroupItem><a href="#test2">Test 2</a></ListGroupItem>
-            </ListGroup>
+            {this.getList(this.props.list)}
           </Col>
         </Row>
       </div>
