@@ -9,7 +9,7 @@ class DeploymentConfiguration extends Component {
       <div className='panel panel-default'>
         <Row>
           <Col md={12}>
-            <GridHeader headerName='Result'/>
+            <GridHeader headerName='Deployment Configuration'/>
           </Col>
         </Row>
       </div>
