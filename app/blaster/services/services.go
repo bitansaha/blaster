@@ -38,7 +38,7 @@ func GetTestByName(testName string) (*model.TestJSON, error) {
 	file, err := os.Open(filePath)
 
 	if err != nil {
-		deleteTest(testName)
+		DeleteTest(testName)
 		return &testJSON, networkerrors.NewNetworkError("Data file not found", &networkerrors.Error404{})
 	}
 
@@ -53,7 +53,7 @@ func CreateTest(testName string, testJSON *model.TestJSON, files map[string][]*m
 	//Post Create Validation
 	defer func() {
 		if nErr != nil {
-			deleteTest(testName)
+			DeleteTest(testName)
 		}
 	}()
 
@@ -157,12 +157,14 @@ func saveCsvFiles(testName string, testJSON *model.TestJSON, files map[string][]
 	return nil
 }
 
-func deleteTest(testName string) {
+func DeleteTest(testName string) bool {
 	testDirectoryExists := checkTestDirectory(testName)
 	if testDirectoryExists {
 		directoryPath := filepath.Join(config.GetBlasterConfiguration().DataLocation, testName)
 		os.RemoveAll(directoryPath)
 	}
+
+	return testDirectoryExists
 }
 
 func checkTestDirectory(testName string) bool {

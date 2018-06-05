@@ -55,3 +55,10 @@ func (testController *TestController) CreateTest(testName string) revel.Result {
 	}
 	return testController.Result
 }
+
+func (testController *TestController) DeleteTest(testName string) revel.Result {
+	if !services.DeleteTest(testName) {
+		setErrorMessage(testController.Response, networkerrors.NewNetworkError("Data file not found", &networkerrors.Error404{}))
+	}
+	return testController.Result
+}

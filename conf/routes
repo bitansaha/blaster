@@ -21,6 +21,8 @@ GET     /tests/:testName                      TestController.GetTest
 
 POST    /tests/:testName                      TestController.CreateTest
 
+DELETE    /tests/:testName                      TestController.DeleteTest
+
 # Map static resources from the /app/static folder to the /static path
 GET     /static/*filepath                       Static.Serve("static")
 
