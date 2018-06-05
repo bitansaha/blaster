@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
-
-
+import {div} from 'react-bootstrap';
+import HomePage from './view/homePage/HomePage'
+import Footer from './common/footer/Footer'
+import Header from './common/header/Header'
 
 class App extends Component {
+
   render() {
     return (
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">Blaster!</a>
-          </Navbar.Brand>
-        </Navbar.Header>
-      </Navbar>
+      <div>
+        <Header />
+        <HomePage />
+        <Footer />
+      </div>
     );
   }
 }
-
 export default App;
