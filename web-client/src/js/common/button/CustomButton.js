@@ -8,7 +8,7 @@ class CustomButton extends Component {
     return (
       <div>
         <Button onClick={this.createTest} bsStyle="primary" bsSize="large" block>
-          Create Test
+          {this.props.buttonName}
         </Button>
       </div>
     );

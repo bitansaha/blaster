@@ -14,7 +14,9 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:9000/tests")
+
+    const baseurl = window.location.origin;
+    fetch(baseurl + "/tests")
       .then(res => res.json())
       .then(
         (result) => {

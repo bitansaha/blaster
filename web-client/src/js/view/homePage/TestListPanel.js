@@ -11,7 +11,7 @@ class TestListPanel extends Component {
 
   getList(list) {
     const listItems = list.map((name) =>
-      <ListGroupItem>{name}</ListGroupItem>
+      <ListGroupItem><b>{name}</b></ListGroupItem>
     );
     return (
       <ListGroup fluid style={{ paddingLeft: 15,  paddingRight: 15}}>{listItems}</ListGroup>

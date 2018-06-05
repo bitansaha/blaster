@@ -4,7 +4,7 @@ import GridHeader from '../../gridHeader/GridHeader';
 import CustomButton from '../../common/button/CustomButton';
 
 class CreateTestPanel extends Component {
-  
+
   render() {
     return (
       <div className='panel panel-default'>
@@ -17,7 +17,7 @@ class CreateTestPanel extends Component {
               <Col md={3}></Col>
               <Col md={6}>
                 <div>
-                  <CustomButton />
+                  <CustomButton buttonName="Create Test"/>
                 </div>
               </Col>
               <Col md={3}></Col>
