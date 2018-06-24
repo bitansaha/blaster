@@ -15,13 +15,15 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 #GET     /public/*filepath                       Static.Serve("public")
 
-GET     /tests                                TestController.GetTests
+GET    /tests                                TestController.GetTests
 
-GET     /tests/:testName                      TestController.GetTest
+GET    /tests/:testName                      TestController.GetTest
 
-POST    /tests/:testName                      TestController.CreateTest
+POST   /tests/:testName                      TestController.CreateTest
 
-DELETE    /tests/:testName                      TestController.DeleteTest
+DELETE /tests/:testName                      TestController.DeleteTest
+
+PUT    /tests/:testName                      TestController.UpdateTest
 
 # Map static resources from the /app/static folder to the /static path
 GET     /static/*filepath                       Static.Serve("static")

@@ -16,6 +16,7 @@ const (
 
 type BlasterConfig struct {
 	DataLocation string `yaml:"data_location"`
+	TempLocation string `yaml:"temp_location"`
 }
 
 var config BlasterConfig

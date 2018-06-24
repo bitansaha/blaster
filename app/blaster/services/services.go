@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"os"
 	"path/filepath"
@@ -63,7 +64,7 @@ func CreateTest(testName string, testJSON *model.TestJSON, files map[string][]*m
 		return networkerrors.NewNetworkError("Test already exists", &networkerrors.Error409{})
 	}
 
-	if nErr = validate(testJSON, files); nErr != nil {
+	if nErr = validateCreate(testJSON, files); nErr != nil {
 		return nErr
 	}
 
@@ -84,7 +85,136 @@ func CreateTest(testName string, testJSON *model.TestJSON, files map[string][]*m
 	return nil
 }
 
-func validate(testJSON *model.TestJSON, files map[string][]*multipart.FileHeader) error {
+func UpdateTest(testName string, updTestJSON *model.TestJSON, files map[string][]*multipart.FileHeader) (nErr error) {
+
+	// Check if the test exists
+	if !checkTestDirectory(testName) {
+		return networkerrors.NewNetworkError("Test does not exists", &networkerrors.Error404{})
+	}
+
+	dataDirectoryPath := filepath.Join(config.GetBlasterConfiguration().DataLocation, testName)
+	tempDirectoryPath := filepath.Join(config.GetBlasterConfiguration().TempLocation, testName)
+
+	// Create the temp directory
+	if err := os.MkdirAll(tempDirectoryPath, os.ModePerm); err != nil {
+		return err
+	}
+
+	if err := copy(dataDirectoryPath, tempDirectoryPath); err != nil {
+		return err
+	} else {
+		// The data has been copied, hence registering a Rollback function incase of merge error down-stream
+		defer func() {
+			if nErr != nil {
+				rollBackFlag := true
+
+				if err := os.RemoveAll(dataDirectoryPath); err != nil {
+					rollBackFlag = false
+				} else {
+					if err := os.MkdirAll(dataDirectoryPath, os.ModePerm); err != nil {
+						rollBackFlag = false
+					} else {
+						if err := copy(tempDirectoryPath, dataDirectoryPath); err != nil {
+							rollBackFlag = false
+						} else {
+							os.RemoveAll(tempDirectoryPath)
+						}
+					}
+				}
+
+				// Check Rollback State
+				if !rollBackFlag {
+					errMsg := "Failed to rollback. Inconsistent state. Contact Admin"
+					log.Fatalln(errMsg)
+					nErr = networkerrors.NewNetworkError(errMsg+"{"+nErr.Error()+"}", &networkerrors.Error500{})
+				}
+
+			}
+		}()
+
+	}
+
+	// Update Test scenario
+	if oriTestJson, err := GetTestByName(testName); err != nil {
+		return err
+	} else {
+		updTestJSON.TestDefinition.TestName = oriTestJson.TestDefinition.TestName
+		validateUpdate(updTestJSON, files)
+
+		updScenariosMap := make(map[string]bool)
+		for _, updScenario := range updTestJSON.ExecutionPlan.Scenarios {
+			updScenariosMap[updScenario.Name] = true
+		}
+
+		// Delete deleted scenario file's
+		for _, oriScenario := range oriTestJson.ExecutionPlan.Scenarios {
+			if _, isPresent := updScenariosMap[oriScenario.Name]; !isPresent {
+				filePath := filepath.Join(dataDirectoryPath, oriScenario.FileName)
+				os.Remove(filePath)
+			}
+		}
+
+		jsonDataFilePath := filepath.Join(dataDirectoryPath, fileName)
+		os.Remove(jsonDataFilePath)
+
+		if err := saveJsonData(testName, updTestJSON); err != nil {
+			return err
+		}
+
+		if err := updateCsvFiles(testName, updTestJSON, files); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func validateUpdate(testJSON *model.TestJSON, uploadedFiles map[string][]*multipart.FileHeader) error {
+	var validRowCount int
+	for scenarioCount, scenario := range testJSON.ExecutionPlan.Scenarios {
+		if scenario.FileName != "" {
+			var reader io.Reader = nil
+
+			if uploadedFile := uploadedFiles[scenario.FileName]; uploadedFile != nil {
+				if file, err := uploadedFile[0].Open(); err != nil {
+					return err
+				} else {
+					defer file.Close()
+					reader = file
+				}
+			} else {
+				directoryPath := filepath.Join(config.GetBlasterConfiguration().DataLocation, testJSON.TestDefinition.TestName)
+				filePath := filepath.Join(directoryPath, scenario.FileName)
+				if file, err := os.Open(filePath); err != nil {
+					return err
+				} else {
+					defer file.Close()
+					reader = file
+				}
+			}
+
+			if reader != nil {
+				if rowCount, err := getNumberOfRows(reader); err != nil {
+					return networkerrors.NewNetworkError("Failed to read file: "+scenario.FileName, &networkerrors.Error500{})
+				} else {
+					if scenarioCount == 0 {
+						validRowCount = rowCount
+					} else {
+						if validRowCount != rowCount {
+							return networkerrors.NewNetworkError("Invalid number of Rows: "+scenario.FileName, &networkerrors.Error400{})
+						}
+					}
+				}
+			} else {
+				return networkerrors.NewNetworkError("File not found: "+scenario.FileName, &networkerrors.Error400{})
+			}
+		}
+	}
+	return nil
+}
+
+func validateCreate(testJSON *model.TestJSON, files map[string][]*multipart.FileHeader) error {
 	var validRowCount int
 	for scenarioCount, scenario := range testJSON.ExecutionPlan.Scenarios {
 		if scenario.FileName != "" {
@@ -152,6 +282,33 @@ func saveCsvFiles(testName string, testJSON *model.TestJSON, files map[string][]
 				}
 			}
 		}
+	}
+
+	return nil
+}
+
+func updateCsvFiles(testName string, testJSON *model.TestJSON, files map[string][]*multipart.FileHeader) error {
+	directoryPath := filepath.Join(config.GetBlasterConfiguration().DataLocation, testName)
+
+	for _, scenario := range testJSON.ExecutionPlan.Scenarios {
+		if scenario.FileName != "" && files[scenario.FileName] != nil {
+			filePath := filepath.Join(directoryPath, scenario.FileName)
+			os.Remove(filePath)
+			if fileInMemory, err := files[scenario.FileName][0].Open(); err != nil {
+				return networkerrors.NewNetworkError("Failed to open multipart file: "+scenario.FileName, &networkerrors.Error500{})
+			} else {
+				defer fileInMemory.Close()
+				if file, err := os.Create(filePath); err != nil {
+					return networkerrors.NewNetworkError("Failed to create file: "+scenario.FileName+", "+err.Error(), &networkerrors.Error500{})
+				} else {
+					defer file.Close()
+					if _, err := io.Copy(file, fileInMemory); err != nil {
+						return networkerrors.NewNetworkError("Failed to write file: "+scenario.FileName+", "+err.Error(), &networkerrors.Error500{})
+					}
+				}
+			}
+		}
+
 	}
 
 	return nil
