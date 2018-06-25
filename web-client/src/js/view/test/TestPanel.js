@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col, div, form, FormGroup, FormControl, ControlLabel, Nav, NavItem } from 'react-bootstrap';
-import Header from '../../common/header/Header'
-import Footer from '../../common/footer/Footer'
-import TestDefinitionPanel from './TestDefinitionPanel'
-import TestDefinitionForm from './TestDefinitionForm'
+import { Row, Col, div, Nav, NavItem } from 'react-bootstrap';
 import GridHeader from '../../grid/GridHeader'
 
 class TestPanel extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

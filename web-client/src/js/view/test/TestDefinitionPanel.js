@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Nav, NavItem} from 'react-bootstrap';
 import GridHeader from '../../grid/GridHeader'
-//import ExecutionPlan from '../executionPlan/ExecutionPlan'
 import Test from './Test'
 
 class TestDefinitionPanel extends Component {
@@ -11,12 +10,10 @@ class TestDefinitionPanel extends Component {
     this.testDefinationPanel = this.props.testDefinationPanel.bind(this);
     this.handleExecutionPlanForm = this.handleExecutionPlanForm.bind(this);
     this.state = {isClicked: true};
-    const definationPanel = this.props.definationPanel;
-    const definationForm = this.props.definationForm;
   }
 
   render() {
-    this.state = {isClicked: true};
+    this.setState({isClicked: true});
     if (this.isClicked) {
        this.definationPanel = <Test isClicked={this.handleTestDefinationPanel} />;
      } else {
