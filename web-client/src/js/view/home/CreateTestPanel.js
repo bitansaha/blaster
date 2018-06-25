@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, div} from 'react-bootstrap';
-import GridHeader from '../../gridHeader/GridHeader';
+import GridHeader from '../../grid/GridHeader';
 import CustomButton from '../../common/button/CustomButton';
 
 class CreateTestPanel extends Component {
