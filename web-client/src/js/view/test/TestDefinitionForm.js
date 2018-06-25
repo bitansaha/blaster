@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, div, form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
-import GridHeader from '../../gridHeader/GridHeader'
+import GridHeader from '../../grid/GridHeader'
 
 class TestDefinitionForm extends Component {
 

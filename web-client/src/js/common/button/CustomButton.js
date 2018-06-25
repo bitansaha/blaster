@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {div, Button} from 'react-bootstrap';
-import MainComponent from '../../view/testDefinition/MainComponent';
+import MainComponent from '../../view/test/MainComponent';
 
 class CustomButton extends Component {
 

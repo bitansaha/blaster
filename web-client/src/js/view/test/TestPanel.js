@@ -4,7 +4,7 @@ import Header from '../../common/header/Header'
 import Footer from '../../common/footer/Footer'
 import TestDefinitionPanel from './TestDefinitionPanel'
 import TestDefinitionForm from './TestDefinitionForm'
-import GridHeader from '../../gridHeader/GridHeader'
+import GridHeader from '../../grid/GridHeader'
 
 class TestPanel extends Component {
 

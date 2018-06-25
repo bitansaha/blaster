@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Nav, NavItem} from 'react-bootstrap';
-import GridHeader from '../../gridHeader/GridHeader'
+import GridHeader from '../../grid/GridHeader'
 import ExecutionPlan from './ExecutionPlan'
 import Test from './Test'
 import TestPanel from './TestPanel'
