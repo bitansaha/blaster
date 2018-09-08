@@ -139,7 +139,10 @@ func UpdateTest(testName string, updTestJSON *model.TestJSON, files map[string][
 		return err
 	} else {
 		updTestJSON.TestDefinition.TestName = oriTestJson.TestDefinition.TestName
-		validateUpdate(updTestJSON, files)
+
+		if err := validateUpdate(updTestJSON, files); err != nil {
+			return err
+		}
 
 		updScenariosMap := make(map[string]bool)
 		for _, updScenario := range updTestJSON.ExecutionPlan.Scenarios {
