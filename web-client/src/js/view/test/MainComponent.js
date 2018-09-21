@@ -31,13 +31,14 @@ class MainComponent extends Component {
           <Col sm={3}>
               <TestPanel handleOnSelect={this.handleOnSelect} isSelected={this.state.isSelected}/>
           </Col>
-          <Col sm={8}>
+          <Col sm={7}>
             {this.state.isSelected ? (
               <TestDefinitionForm />
             ) : (
               <ExecutionPlan />
             )}
           </Col>
+          <Col md={1}></Col>
         </Row>
         <Footer />
       </div>
