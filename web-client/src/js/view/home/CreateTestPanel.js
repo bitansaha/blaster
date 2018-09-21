@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Row, Col, div} from 'react-bootstrap';
 import GridHeader from '../../grid/GridHeader';
 import CustomButton from '../../common/button/CustomButton';
+import MainComponent from '../test/MainComponent';
 
 class CreateTestPanel extends Component {
+
+  constructor(props){
+    super(props);
+    this.createTest = this.createTest.bind(this);
+  }
+
+  createTest(){
+    ReactDOM.render(<MainComponent />, document.getElementById('root'));
+  }
 
   render() {
     return (
@@ -17,7 +28,7 @@ class CreateTestPanel extends Component {
               <Col md={3}></Col>
               <Col md={6}>
                 <div>
-                  <CustomButton buttonName="Create Test"/>
+                  <CustomButton buttonName="Create Test" buttonFunction={this.createTest}/>
                 </div>
               </Col>
               <Col md={3}></Col>
