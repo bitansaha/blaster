@@ -11,8 +11,16 @@ class MainComponent extends Component {
   constructor(props) {
       super(props);
       this.handleOnSelect = this.handleOnSelect.bind(this);
-      this.state = {isSelected: true};
-    }
+      this.state = {
+        isSelected: true,
+        testDefinationData: {
+          testName: "",
+          numberOfUser: 0,
+          rampUpDuration: 0,
+          repeatCount: 0
+        }
+      };
+  }
 
   handleOnSelect() {
       this.setState({isSelected: !this.state.isSelected});
@@ -33,7 +41,7 @@ class MainComponent extends Component {
           </Col>
           <Col sm={7}>
             {this.state.isSelected ? (
-              <TestDefinitionForm />
+              <TestDefinitionForm testDefinationData={this.state.testDefinationData}/>
             ) : (
               <ExecutionPlan />
             )}
