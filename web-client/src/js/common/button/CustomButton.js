@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {div, Button} from 'react-bootstrap';
 
 class CustomButton extends Component {
@@ -21,7 +20,7 @@ class CustomButton extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.state.buttonFunction} bsStyle={this.state.buttonStyle} bsSize="large" block>
+        <Button onClick={this.state.buttonFunction} bsStyle={this.state.buttonStyle} block>
           {this.state.buttonName}
         </Button>
       </div>

@@ -18,6 +18,9 @@ class MainComponent extends Component {
           numberOfUser: 0,
           rampUpDuration: 0,
           repeatCount: 0
+        },
+        executionPlanData: {
+          baseUrl: ""
         }
       };
   }
@@ -43,7 +46,7 @@ class MainComponent extends Component {
             {this.state.isSelected ? (
               <TestDefinitionForm testDefinationData={this.state.testDefinationData}/>
             ) : (
-              <ExecutionPlan />
+              <ExecutionPlan executionPlanData={this.state.executionPlanData}/>
             )}
           </Col>
           <Col md={1}></Col>
