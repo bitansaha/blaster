@@ -33,11 +33,6 @@ class MainComponent extends Component {
     return (
       <div>
         <Row>
-          <Col sm={12}>
-            <Header />
-          </Col>
-        </Row>
-        <Row>
           <Col sm={1}></Col>
           <Col sm={3}>
               <TestPanel handleOnSelect={this.handleOnSelect} isSelected={this.state.isSelected}/>
@@ -51,7 +46,6 @@ class MainComponent extends Component {
           </Col>
           <Col md={1}></Col>
         </Row>
-        <Footer />
       </div>
     );
   }

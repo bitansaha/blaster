@@ -8,7 +8,7 @@ class Header extends Component {
       <div>
         <Row>
           <Col sm={12}>
-            <Navbar fluid style={{ paddingLeft: 15}}>
+            <Navbar>
               <Navbar.Header>
                 <Navbar.Brand>
                   <a>Blaster</a>

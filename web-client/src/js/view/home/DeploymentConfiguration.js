@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
-import { Row, Col, div} from 'react-bootstrap';
+import { Row, Col, div, Panel} from 'react-bootstrap';
 import GridHeader from '../../grid/GridHeader'
 
 class DeploymentConfiguration extends Component {
 
   render() {
     return (
-      <div className='panel panel-default'>
+      <div>
         <Row>
           <Col md={12}>
-            <GridHeader headerName='Deployment Configuration'/>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title componentClass="h4">Deployment Configuration</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body style={{'max-height':'72vh', 'overflow-y': 'auto'}}>
+              </Panel.Body>
+            </Panel>
           </Col>
         </Row>
       </div>
     );
   }
+
 }
 
 export default DeploymentConfiguration;

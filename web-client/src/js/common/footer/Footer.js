@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import {Navbar} from 'react-bootstrap';
+import {Navbar, Row, Col} from 'react-bootstrap';
 
 class Footer extends Component {
 
   render() {
     return (
-      <Navbar fluid style={{ paddingLeft: 15}} className="navbar-fixed-bottom" >
-      </Navbar>
+      <div>
+        <Row>
+          <Col sm={12}>
+          <Navbar className="navbar-fixed-bottom">
+          </Navbar>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }

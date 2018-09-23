@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, div, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { Row, Col, div, ListGroup, ListGroupItem, Panel} from 'react-bootstrap';
 import GridHeader from '../../grid/GridHeader'
 
 class TestListPanel extends Component {
@@ -20,11 +20,15 @@ class TestListPanel extends Component {
 
   render() {
     return (
-      <div className='panel panel-default'>
-        <Row>
-          <Col md={12}>
-            <GridHeader headerName='Test List'/>
-            {this.getList(this.props.list)}
+      <div >
+        <Row >
+          <Col md={12} >
+            <Panel >
+              <Panel.Heading>
+                <Panel.Title componentClass="h4">Test List</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body style={{height:'64vh', 'overflow-y': 'auto'}}>{this.getList(this.props.list)}</Panel.Body>
+            </Panel>
           </Col>
         </Row>
       </div>
