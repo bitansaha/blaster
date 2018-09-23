@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Col, Row} from 'react-bootstrap';
 import ExecutionPlan from './ExecutionPlan'
 import TestPanel from './TestPanel'
-import Header from '../../common/header/Header'
 import TestDefinitionForm from './TestDefinitionForm'
-import Footer from '../../common/footer/Footer'
 
 class MainComponent extends Component {
 

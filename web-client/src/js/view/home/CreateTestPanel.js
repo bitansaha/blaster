@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Row, Col, div, Panel} from 'react-bootstrap';
-import GridHeader from '../../grid/GridHeader';
 import CustomButton from '../../common/button/CustomButton';
 import MainComponent from '../test/MainComponent';
 
