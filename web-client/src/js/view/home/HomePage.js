@@ -31,12 +31,12 @@ class HomePage extends Component {
       <div fluid style={{ marginTop: 1}}>
         <Row>
           <Col md={1}></Col>
-          <Col md={3}>
+          <Col md={3} >
             <TestListPanel list={this.state.items} />
+            <CreateTestPanel />
           </Col>
 
           <Col md={7}>
-            <CreateTestPanel />
             <DeploymentConfiguration />
           </Col>
           <Col md={1}></Col>
@@ -44,6 +44,7 @@ class HomePage extends Component {
       </div>
     );
   }
+
 }
 
 export default HomePage;
