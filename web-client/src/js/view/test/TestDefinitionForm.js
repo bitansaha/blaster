@@ -29,9 +29,9 @@ class TestDefinitionForm extends Component {
                     <ControlLabel>Number of user:</ControlLabel>
                     <FormControl type="Number"
                       placeholder="Enter number of user"
-                      value={this.props.testDefinationData.numberOfUser}
+                      value={this.props.testDefinationData.userCount}
                       onChange={(e)=>{
-                        this.props.testDefinationData.numberOfUser = e.target.value;
+                        this.props.testDefinationData.userCount = e.target.value;
                         this.props.testDefinationUpdate(this.props.testDefinationData);
                       }}
                     />

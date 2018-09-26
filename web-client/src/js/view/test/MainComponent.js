@@ -18,12 +18,14 @@ class MainComponent extends Component {
         isRun: false,
         testDefinationData: {
           testName: "",
-          numberOfUser: 0,
+          userCount: 0,
           rampUpDuration: 0,
           repeatCount: 0
         },
         executionPlanData: {
-          baseUrl: ""
+          baseUrl: "",
+          headers: [],
+          scenarios: []
         }
       };
   }
