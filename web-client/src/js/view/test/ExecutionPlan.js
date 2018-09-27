@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, div, form, FormGroup, FormControl, ControlLabel, Panel} from 'react-bootstrap';
-import GridHeader from '../../grid/GridHeader'
 import CustomButton from '../../common/button/CustomButton';
 
-class TestDefinitionForm extends Component {
+class ExecutionPlan extends Component {
 
   render() {
     return (
@@ -43,4 +42,4 @@ class TestDefinitionForm extends Component {
   }
 }
 
-export default TestDefinitionForm;
+export default ExecutionPlan;

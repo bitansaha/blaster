@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col, div, Nav, NavItem, Panel } from 'react-bootstrap';
-import GridHeader from '../../grid/GridHeader'
+import { Row, Col, div, Nav, NavItem, Panel, Button, Glyphicon } from 'react-bootstrap';
 
 class TestPanel extends Component {
 
   render() {
+
     return (
 
       <div>
@@ -23,6 +23,26 @@ class TestPanel extends Component {
                     Execution Plan
                   </NavItem>
                 </Nav>
+                <p>{}</p>
+                {this.props.isRun ?
+                (<Button onClick={this.props.run} style={{'margin-top': '40vh'}} bsSize="large" bsStyle="success" block>
+                  <Glyphicon glyph="play-circle" /> Run
+                </Button>)
+                :
+                (<Button onClick={this.props.run} style={{'margin-top': '40vh'}} bsSize="large" bsStyle="danger" block disabled>
+                    <Glyphicon glyph="play-circle" /> Run
+                </Button>)
+                }
+                <p>{}</p>
+                {this.props.isSave ?
+                (<Button onClick={this.props.saveData} bsStyle="success" block>
+                  Save
+                </Button>)
+                :
+                (<Button onClick={this.props.saveData} bsStyle="warning" block disabled>
+                  Save
+                </Button>)
+                }
               </Panel.Body>
             </Panel>
           </Col>

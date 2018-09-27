@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col, div, ListGroup, ListGroupItem, Panel} from 'react-bootstrap';
-import GridHeader from '../../grid/GridHeader'
 
 class TestListPanel extends Component {
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col, div, Panel} from 'react-bootstrap';
-import GridHeader from '../../grid/GridHeader'
 
 class DeploymentConfiguration extends Component {
 
